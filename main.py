@@ -77,7 +77,7 @@ class FeatureEngine:
 # --- Main App ---
 def main():
     st.set_page_config(page_title="Targeting AI 에이전트", layout="wide")
-    st.title("🎯 AI 기반 세그먼트 생성 에이전트")
+    st.title("🎯 Targeting AI 에이전트")
     st.markdown("상품 및 캠페인 정보를 바탕으로 최적의 피처를 추출합니다.")
 
     # 세션 상태 초기화
