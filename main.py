@@ -76,9 +76,9 @@ class FeatureEngine:
 
 # --- Main App ---
 def main():
-    st.set_page_config(page_title="타겟마케팅 AI 에이전트", layout="wide")
-    st.title("🎯 AI 기반 타겟마케팅 세그먼트 생성 에이전트")
-    st.markdown("상품 및 캠페인 키워드 정보를 바탕으로 최적의 분석 피처를 추출합니다.")
+    st.set_page_config(page_title="Targeting AI 에이전트", layout="wide")
+    st.title("🎯 AI 기반 세그먼트 생성 에이전트")
+    st.markdown("상품 및 캠페인 정보를 바탕으로 최적의 피처를 추출합니다.")
 
     # 세션 상태 초기화
     if 'selected_features' not in st.session_state:
@@ -112,7 +112,7 @@ def main():
 
     # 단계 1: 피처 선정
     # 1. 사용자가 버튼을 눌렀을 때
-    if st.button("유사 Feature 추출", type="primary", use_container_width=True):
+    if st.button("최적 Feature 검색", type="primary", use_container_width=True):
         # 즉시 리스트를 비우고 '검색 대기' 상태로 전환 후 리런
         st.session_state.selected_features = None
         st.session_state.is_searching = True
@@ -135,7 +135,7 @@ def main():
         )
         st.session_state.targeting_plan = plan
         
-        with st.spinner("유사 피처를 검색 중입니다..."):
+        with st.spinner("피처를 검색 중입니다..."):
             # 실제 로딩 트리거
             st.session_state.selected_features = feature_engine.select_features_semantically(plan)
             
