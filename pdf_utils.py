@@ -13,7 +13,24 @@ class PDFFeatureLoader:
         self.pdf_path = pdf_path
         self.json_path = json_path
         self.vector_store = None
-        self.embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+
+        # API Key 확인 (환경변수 또는 Streamlit Secrets)
+        api_key = os.getenv("OPENAI_API_KEY")
+
+        # 런타임에 st.secrets 확인 (Streamlit 환경인 경우)
+        try:
+            import streamlit as st
+            if not api_key and "OPENAI_API_KEY" in st.secrets:
+                api_key = st.secrets["OPENAI_API_KEY"]
+        except ImportError:
+            pass
+
+        if not api_key:
+            # 로컬 실행 시 .env가 있으면 여기서 에러가 안 나겠지만, 
+            # Cloud 배포 시 Secrets 설정이 안 되어있으면 나중에 에러가 납니다.
+            self.embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
+        else:
+            self.embeddings = OpenAIEmbeddings(model="text-embedding-3-small", openai_api_key=api_key)
 
     def _get_file_mtime(self, filepath: str) -> float:
         """파일의 마지막 수정 시간을 반환합니다."""

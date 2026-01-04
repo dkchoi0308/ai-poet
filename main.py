@@ -2,14 +2,19 @@ import time
 import random
 from datetime import datetime
 from typing import List, Dict, Any, Optional
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 import streamlit as st
 from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
 from pdf_utils import PDFFeatureLoader
 
 # 환경 변수 설정
-# load_dotenv()
+load_dotenv()
+
+# Streamlit Cloud 배포 대응: st.secrets에서 API 키 가져오기
+if "OPENAI_API_KEY" in st.secrets:
+    import os
+    os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
 
 # --- Data Models (from models.py) ---
 class DailyQuantity(BaseModel):
