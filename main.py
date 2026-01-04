@@ -2,14 +2,14 @@ import time
 import random
 from datetime import datetime
 from typing import List, Dict, Any, Optional
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 import streamlit as st
 from pydantic import BaseModel, Field
 from langchain_openai import ChatOpenAI
 from pdf_utils import PDFFeatureLoader
 
 # 환경 변수 설정
-load_dotenv()
+# load_dotenv()
 
 # --- Data Models (from models.py) ---
 class DailyQuantity(BaseModel):
